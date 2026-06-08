@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler,OneHotEncoder,LabelEncoder
 from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
+from sklearn.ensemble import RandomForestRegressor
 
 
 data=pd.read_csv("D:\HTML\ml_prac\datasets\insurance.csv")
@@ -47,6 +48,25 @@ print("mae_test"+":"+str(mae_test))
 train_pred=model.predict(x_train)
 r2_train=r2_score(y_train,train_pred)
 print("r2_train"+":"+str(r2_train))
+
+#when we see ouput the r2 score were 78 and 74 lets the model underfit or we will take a complex model 
+
+model2=RandomForestRegressor()
+model2.fit(x_train,y_train)
+y_predict1=model2.predict(x_test)
+mse_test1=mean_squared_error(y_test,y_predict1)
+mae_test1=mean_absolute_error(y_test,y_predict1)
+r2_test1=r2_score(y_test,y_predict1)
+print("mse_test"+":"+str(mse_test1))
+print("--------------")
+print("r2_test"+":"+str(r2_test1))
+print("--------------------")
+print("mae_test"+":"+str(mae_test1))
+#lets see how the traing data perform
+train_pred1=model2.predict(x_train)
+r2_train1=r2_score(y_train,train_pred1)
+print("r2_train"+":"+str(r2_train1))
+
 
 
 
