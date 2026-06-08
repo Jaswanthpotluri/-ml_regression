@@ -5,6 +5,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler,OneHotEncoder,LabelEncoder
 from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
 from sklearn.ensemble import RandomForestRegressor
+import matplotlib.pyplot as plt
+
 
 
 data=pd.read_csv("D:\HTML\ml_prac\datasets\insurance.csv")
@@ -66,6 +68,19 @@ print("mae_test"+":"+str(mae_test1))
 train_pred1=model2.predict(x_train)
 r2_train1=r2_score(y_train,train_pred1)
 print("r2_train"+":"+str(r2_train1))
+
+plt.bar(["Linear Regression","Random Forest"],[r2_test,r2_test1])
+plt.xlabel("Models")
+plt.ylabel("R2 Score")
+plt.title("Model Comparison")
+plt.show()
+plt.plot(y_test,y_predict,'o',label="Linear Regression")
+plt.plot(y_test,y_predict1,'o',label="Random Forest")
+plt.xlabel("Actual Charges")
+plt.ylabel("Predicted Charges")     
+plt.legend()
+plt.show() 
+ 
 
 
 
